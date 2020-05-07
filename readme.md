@@ -14,10 +14,10 @@ full list of US feeds - can be found on the NWS CAP [home page](http://alerts.we
 The nwscapparser module exports a single class, `NWSCAPParser`. Pass a string containing the
 XML from a CAP alert as the only param to the initialization call:
 ```python
-from nwscapparser import NWSCAPParser
+from nwscapparser import nws_cap_parser
 f = r'cap.IL124CA04A2F50.SevereThunderstormWarning.xml'	# included (actual) alert
 src = open(f,'r').read()
-alert = NWSCAPParser(src)
+alert = nws_cap_parser(src)
 ```
 
 Of note, the instance exposes the FIPS6 county codes (also known as SAME codes) that the alert references, so that affected 
