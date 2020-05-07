@@ -11,7 +11,7 @@ packages = ['dictabase']
 print('packages=', packages)
 setup(
     name='nwscapparser3',
-    version='3.0.0',
+    version='3.0.1',
     description='NWS CAP Parser for Python3',
     author='Grant Miller. Based on the work of Robert Morris (robert@emthree.com)',
     author_email='grant@grant-miller.com',

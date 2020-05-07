@@ -1,11 +1,6 @@
-import datetime
-
 import requests
 from lxml import objectify
 from lxml.etree import ElementBase
-import pytz
-import json
-from dateutil.parser import parse
 
 
 def DumpNode(node):
@@ -38,13 +33,10 @@ class NWSCAPParser:
         # print('xmlString=', xmlString)
         xmlObj = objectify.fromstring(xmlString.encode())
 
-        nowDT = datetime.datetime.utcnow().replace(tzinfo=pytz.UTC)
-        print('nowDT=', nowDT)
-
-        for entry in xmlObj.entry:
-            entry = CAPEntry(xmlObj, entry)
-            if entry.id not in self.entries:
-                self.entries[entry.id] = entry
+        for entryTag in xmlObj.entry:
+            entryObj = CAPEntry(xmlObj, entryTag)
+            if entryObj.id not in self.entries:
+                self.entries[entryObj.id] = entryObj
 
 
 class CAPEntry:
