@@ -30,26 +30,22 @@ if __name__ == '__main__':
     def TestLocalXML():
         print('--Testing parse of a local XML file---')
 
-        filepath = r'cap.IL124CA04A2F50.SevereThunderstormWarning.xml'
+        filepath = r'cap.2020-05-07T14_12_00.xml'
         with open(filepath, 'rt') as file:
             src = file.read()
 
-        alert = NWSCAPParser(src)
-        print(alert)
-        test_basic_fields(alert)
-        test_dict_dump(alert)
-        test_json_dump(alert)
+        cap = NWSCAPParser(rawXML=src)
+
+        for ID, entry in cap.entries.items():
+            print('ID=', ID, ', entry=', entry)
 
     def TestRemoteURL():
         print('--Testing parse of a remote file---')
 
-        url = 'http://alerts.weather.gov/cap/az.php?x=1'
-        alert = NWSCAPParser(cap_url=url)
+        cap = NWSCAPParser(url='http://alerts.weather.gov/cap/nc.php?x=1')
 
-        print(alert)
-        test_basic_fields(alert)
-        test_dict_dump(alert)
-        test_json_dump(alert)
+        for ID, entry in cap.entries.items():
+            print('ID=', ID, ', entry=', entry)
 
-    # TestLocalXML()
+    TestLocalXML()
     TestRemoteURL()
