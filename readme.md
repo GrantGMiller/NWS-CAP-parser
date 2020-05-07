@@ -1,4 +1,4 @@
-# NWS CAP Parser
+# NWS CAP Parser (Python3)
 
 A Python module to make parsing National Weather Service (NWS) alerts simple.
 
