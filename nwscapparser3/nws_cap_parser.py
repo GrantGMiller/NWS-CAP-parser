@@ -70,6 +70,7 @@ if __name__ == '__main__':
         print('ID=', ID)
         print('entry.id=', entry.id)
         print('entry=', entry)
+        print('entry.title=', entry.title)
 
         print('entry.severity=', entry.severity)
         print('entry.urgency=', entry.urgency)
