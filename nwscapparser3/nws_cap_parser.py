@@ -9,7 +9,7 @@ def DumpNode(node):
         if isinstance(value, ElementBase):
             value = DumpNode(value)
         d[key] = value
-    if len(d) is 0:
+    if len(d) == 0:
         return str(node)
     return d
 
@@ -62,13 +62,19 @@ class CAPEntry:
 
 
 if __name__ == '__main__':
-
-    cap = NWSCAPParser('http://alerts.weather.gov/cap/nc.php?x=1')
+    MY_STATE = 'NC'
+    cap = NWSCAPParser('http://alerts.weather.gov/cap/{}.php?x=1'.format(MY_STATE))
 
     for ID, entry in cap.entries.items():
+        print('################################')
         print('ID=', ID)
         print('entry.id=', entry.id)
         print('entry=', entry)
+
+        print('entry.severity=', entry.severity)
+        print('entry.urgency=', entry.urgency)
+        print('entry.certainty=', entry.certainty)
+
         print('entry.status=', entry.status)
         print('entry.msgType=', entry.msgType)
         print('entry.category=', entry.category)

@@ -4,15 +4,14 @@ from setuptools import setup
 from os import path
 
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+with open(path.join(this_directory, 'readme.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-packages = ['dictabase']
-print('packages=', packages)
 setup(
     name='nwscapparser3',
-    version='3.0.1',
+    version='3.0.3',
     description='NWS CAP Parser for Python3',
+    long_description=long_description,
     author='Grant Miller. Based on the work of Robert Morris (robert@emthree.com)',
     author_email='grant@grant-miller.com',
     url='https://github.com/GrantGMiller/NWS-CAP-parser',
@@ -22,7 +21,7 @@ setup(
     install_requires=['requests', 'lxml'],
     data_files=[
         ('', glob.glob('*.xml')),
-        ('', ['demo.py', 'readme.md', 'LICENSE'])]
+        ('', ['demo.py', 'readme.rst', 'LICENSE'])]
 )
 
 # to push to PyPI
