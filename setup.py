@@ -9,7 +9,9 @@ with open(path.join(this_directory, 'readme.rst'), encoding='utf-8') as f:
 
 setup(
     name='nwscapparser3',
-    version='3.0.3',
+    version='3.0.4',
+    # 3.0.4 - added CAPEntry.dict() so that items can be easily json-ized
+
     description='NWS CAP Parser for Python3',
     long_description=long_description,
     author='Grant Miller. Based on the work of Robert Morris (robert@emthree.com)',

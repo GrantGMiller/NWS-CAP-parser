@@ -57,6 +57,16 @@ class CAPEntry:
         else:
             return self.entry.find(f'{{{self.xmlObj.nsmap["cap"]}}}{item}')
 
+    def __iter__(self):
+        for key, value in DumpNode(self).items():
+            yield key, value
+
+    def dict(self):
+        ret = {}
+        for key, value in DumpNode(self).items():
+            ret[key] = value
+        return ret
+
     def __str__(self):
         return f'<CAPEntry: {DumpNode(self.entry)}>'
 
@@ -64,6 +74,7 @@ class CAPEntry:
 if __name__ == '__main__':
     MY_STATE = 'NC'
     cap = NWSCAPParser('http://alerts.weather.gov/cap/{}.php?x=1'.format(MY_STATE))
+    import json
 
     for ID, entry in cap.entries.items():
         print('################################')
@@ -80,3 +91,5 @@ if __name__ == '__main__':
         print('entry.msgType=', entry.msgType)
         print('entry.category=', entry.category)
         print('entry.areaDesc=', entry.areaDesc)
+
+        print('dict()=', json.dumps(entry.dict()))
