@@ -63,8 +63,18 @@ class CAPEntry:
 
     def dict(self):
         ret = {}
-        for key, value in DumpNode(self).items():
-            ret[key] = value
+        for key in  [
+            'id',
+            'title',
+            'severity',
+            'urgency',
+            'certainty',
+            'status',
+            'msgType',
+            'category',
+            'areaDesc',
+        ]:
+            ret[key] = str(getattr(self, key))
         return ret
 
     def __str__(self):
@@ -75,7 +85,6 @@ if __name__ == '__main__':
     MY_STATE = 'NC'
     cap = NWSCAPParser('http://alerts.weather.gov/cap/{}.php?x=1'.format(MY_STATE))
     import json
-
     for ID, entry in cap.entries.items():
         print('################################')
         print('ID=', ID)
@@ -92,4 +101,5 @@ if __name__ == '__main__':
         print('entry.category=', entry.category)
         print('entry.areaDesc=', entry.areaDesc)
 
-        print('dict()=', json.dumps(entry.dict()))
+        print('dict()=', entry.dict())
+        print('json()=', json.dumps(entry.dict()))
